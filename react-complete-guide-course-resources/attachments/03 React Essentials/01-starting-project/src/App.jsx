@@ -1,10 +1,12 @@
-
+//funcion especial 
+import {useState} from 'react';
 import componentImg from './assets/components.png';
 
 import { CORE_CONCEPTS } from './data-with-examples.js';
 import Header from './components/Header/Header.jsx';
 import CoreConcept from './components/CoreConcept.jsx';
 import TabButton from './components/TabButton.jsx';
+import {EXAMPLES} from './data-with-examples.js';
 
 
 
@@ -20,10 +22,28 @@ import TabButton from './components/TabButton.jsx';
 
 
 function App() {
+//se debe llamar en el nivel superior
+  const [selectedTopic, setSelectedTopic] = useState();
 
-//   function handleSelect(selectedButton){
-//     console.log(selectedButton);
-// }
+  function handleSelect(selectedButton){
+    setSelectedTopic(selectedButton);
+    //console.log(selectedTopic);
+   
+}
+
+let tabContent = <p>please select topic</p>;
+
+if (selectedTopic){
+tabContent =(
+    <div id= "tab-contente">
+    <h3>{EXAMPLES[selectedTopic].title}</h3>
+    <p>{EXAMPLES[selectedTopic].description}</p>
+    <pre>
+      <code>{EXAMPLES[selectedTopic].code}</code>
+  </pre>
+  </div>
+);
+}
 
   return (
     <div>
@@ -54,16 +74,14 @@ function App() {
           <h2>Examples</h2>
           <menu>
             {/* composicion de omponente */}
-            {/* <TabButton onSelect={()=> handleSelect('components')}>Components</TabButton>
+            <TabButton onSelect={()=> handleSelect('components')}>Components</TabButton>
             <TabButton onSelect={()=> handleSelect('jxs')}>JSX</TabButton>
             <TabButton onSelect={()=> handleSelect('props')}>Props</TabButton>
-            <TabButton onSelect={()=> handleSelect('state')}>State</TabButton> */}
-            <TabButton>components</TabButton>
-            <TabButton>jsx</TabButton>
-            <TabButton>prop</TabButton>
-            <TabButton>State</TabButton>
+            <TabButton onSelect={()=> handleSelect('state')}>State</TabButton> 
           </menu>
-          Dynamic Content
+          {/* salida condicional */}
+          {tabContent}
+         {/* {selectedTopic} lo hacemos dinamico */}
         </section>
       </main>
     </div>
