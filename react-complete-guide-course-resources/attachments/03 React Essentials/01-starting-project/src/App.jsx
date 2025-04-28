@@ -52,21 +52,24 @@ tabContent =(
         <section id="core-concepts">
           <h2>Core Concepts</h2>
           <ul>
-            {/* manera uno usando manual todo */}
-            <CoreConcept
+            {CORE_CONCEPTS.map((conceptItem) => (
+              <CoreConcept key={conceptItem.title} {...conceptItem}/>
+            ))}
+
+            {/* <CoreConcept
             title="Components"
             description="The core IU building block"
             image = {componentImg}/>
            {/* manera dos importando el archivo y poniendo propiedad por propiedad */}
-            <CoreConcept
+            {/* <CoreConcept
              title={CORE_CONCEPTS[1].title}
              description={CORE_CONCEPTS[1].description}
-             image = {CORE_CONCEPTS[1].image}/>
+             image = {CORE_CONCEPTS[1].image}/> */}
           {/* manera 3 trayendo todas las propiedasdes en un indice indicado */}
-            <CoreConcept   
+            {/* <CoreConcept   
             {...CORE_CONCEPTS[2]}/>
             <CoreConcept   
-            {...CORE_CONCEPTS[3]}/>
+            {...CORE_CONCEPTS[3]}/> */}
           </ul>
         </section>
         {/* como se puede poner una funcion como botones */}
